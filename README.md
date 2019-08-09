@@ -1,10 +1,43 @@
 # bill-service
+A Clojure microservice I started to experiment with and learn more about Clojure and Liberator. 
 
-A Clojure library designed to ... well, that part is up to you.
+It's a tip calculator, based on Exercises for Programmers: 57 Challenges to Develop Your Coding Skills.
 
 ## Usage
 
-FIXME
+To run the tests:
+```
+lein test
+```
+
+To start in the repl:
+```
+lein ring server
+```
+
+This will open the browser on the index page at port 3000. 
+
+If you navigate to /bills you'll see there are no bills yet
+```
+[]
+```
+
+To post a new bill (e.g. a bill for 30 GBP, where the tip percentage is 10%) via the command line:
+```
+curl -XPOST -d '{"amount": 30, "tip-percentage": 10}' -H 'Content-Type: application/json' localhost:3000/bills
+```
+
+If you reload the /bills endpoint, you'll now see the bills has been added
+
+```
+[{"id":1,"amount":30,"tip-percentage":10,"total":33.0}]
+```
+
+You can also query by id for example /bills/1
+```
+{"id":1,"amount":30,"tip-percentage":10,"total":33.0}
+```
+
 
 ## License
 
