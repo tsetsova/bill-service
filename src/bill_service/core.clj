@@ -14,6 +14,13 @@
     [amount (float amount)]
     (+ amount (* (/ tip-percentage 100) amount))))
 
+(defn create-bill [amount tip-percentage]
+  (swap! bills conj
+         {:id             (inc (count @bills))
+          :amount         amount
+          :tip-percentage tip-percentage
+          :total          (total amount tip-percentage)}))
+
 (defresource bill-resource [id]
   :allowed-methods [:get]
   :available-media-types ["application/json"]
@@ -35,11 +42,7 @@
                         (json/read-str :key-fn keyword))
                  amount (:amount body)
                  tip-percentage (:tip-percentage body)]
-             (swap! bills conj
-               {:id             (inc (count @bills))
-                :amount         amount
-                :tip-percentage tip-percentage
-                :total          (total amount tip-percentage)}))))
+             (create-bill amount tip-percentage))))
 
 (defroutes app
   (ANY "/bills/:id" [id]
