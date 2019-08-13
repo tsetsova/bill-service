@@ -5,4 +5,6 @@
                  [liberator "0.15.3"]
                  [compojure "1.6.1"]
                  [ring/ring-core "1.7.1"]
-                 [ring/ring-mock "0.3.2"]])
+                 [ring/ring-mock "0.3.2"]]
+  :profiles {:kaocha {:dependencies [[lambdaisland/kaocha "0.0-529"]]}}
+  :aliases {"kaocha" ["with-profile" "+kaocha" "run" "-m" "kaocha.runner"]})
