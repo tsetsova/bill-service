@@ -7,10 +7,24 @@ It's a tip calculator, based on Exercises for Programmers: 57 Challenges to Deve
 
 To run the tests:
 ```
-lein test
+lein kaocha
 ```
 
-To start in the repl:
+To star the database:
+
+run either
+
+```
+pg_ctl -D /usr/local/var/postgres start
+```
+
+or if on a Mac run:
+
+```
+brew services start postgresql
+```
+
+To start the server run:
 ```
 lein ring server
 ```
